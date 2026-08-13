@@ -1,0 +1,89 @@
+{
+  "name": "ai-commit-msg",
+  "displayName": "AI Commit Message",
+  "description": "Generate commit messages from git diff using AI — Claude, OpenAI, Gemini, DeepSeek, Grok, Mistral, Groq, OpenRouter, Ollama",
+  "version": "0.0.1",
+  "publisher": "vaibhav",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "AI"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiCommit.generate",
+        "title": "AI Commit: Generate Commit Message",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "aiCommit.setup",
+        "title": "AI Commit: Select Provider, Model & API Key"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "aiCommit.generate",
+          "when": "scmProvider == git",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Commit Message",
+      "properties": {
+        "aiCommit.provider": {
+          "type": "string",
+          "default": "anthropic",
+          "enum": [
+            "anthropic",
+            "openai",
+            "gemini",
+            "deepseek",
+            "xai",
+            "mistral",
+            "groq",
+            "openrouter",
+            "ollama",
+            "custom"
+          ],
+          "enumDescriptions": [
+            "Anthropic Claude",
+            "OpenAI GPT",
+            "Google Gemini",
+            "DeepSeek",
+            "xAI Grok",
+            "Mistral",
+            "Groq",
+            "OpenRouter",
+            "Ollama (local, no API key)",
+            "Custom OpenAI-compatible endpoint"
+          ],
+          "description": "AI provider used to generate commit messages"
+        },
+        "aiCommit.model": {
+          "type": "string",
+          "default": "claude-opus-4-8",
+          "description": "Model ID (e.g. claude-opus-4-8, gpt-4o, gemini-2.0-flash, deepseek-chat, llama3.2)"
+        },
+        "aiCommit.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Override base URL. For Ollama defaults to http://localhost:11434. Required for provider 'custom'."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.1"
+  }
+}
