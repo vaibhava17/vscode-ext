@@ -3,8 +3,12 @@
   "displayName": "AI Commit Message",
   "description": "Generate commit messages from git diff using AI — Claude, OpenAI, Gemini, DeepSeek, Grok, Mistral, Groq, OpenRouter, Ollama",
   "version": "0.0.1",
-  "publisher": "vaibhav",
+  "publisher": "vaibhava17",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaibhava17/vscode-ext.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
