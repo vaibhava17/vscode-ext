@@ -76,9 +76,16 @@ const PROVIDERS = {
 const MAX_DIFF_CHARS = 60000;
 
 const PROMPT =
-  "Write a single-line git commit message (max 72 chars, imperative mood, " +
-  "conventional commit style like `feat: ...` or `fix: ...`) for this diff. " +
-  "Reply with ONLY the commit message, no quotes, no explanation.\n\n";
+  "Generate exactly ONE git commit message from the diff. " +
+  "Use Conventional Commits format: <type>: <description>. " +
+  "Allowed types: feat, fix, refactor, perf, docs, test, build, ci, chore, style, revert. " +
+  "Choose the type based on the primary purpose of the change. " +
+  "Use imperative mood. Describe the meaningful change, not implementation details. " +
+  "Do not invent changes. If multiple changes exist, choose the most significant one. " +
+  "The ENTIRE commit message must be 20 to 72 characters, including type, colon, spaces, and punctuation. " +
+  "Keep it concise rather than exceeding the limit. " +
+  "Return ONLY the commit message on a single line, with no quotes or explanation.\n\n" +
+  "Diff:\n";
 
 function secretKey(provider) {
   return `aiCommit.apiKey.${provider}`;
